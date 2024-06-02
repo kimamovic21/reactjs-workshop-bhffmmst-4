@@ -1,4 +1,4 @@
-# To Do List
+# To-Do List Application created with Vite
 
 ## Deploying Vite App to GitHub Pages
 
@@ -15,10 +15,9 @@
 
     Follow the command line instructions provided by GitHub to initialize the repository on your local machine.
 
-    ```bash
-    echo "# to-do-list-copy" >> README.md
+    ```bash    
     git init
-    git add README.md
+    git add .
     git commit -m "first commit"
     git branch -M main
     git remote add origin https://github.com/DzmitryUr/to-do-list-copy.git
@@ -52,9 +51,9 @@
 
     - Add predeploy and deploy scripts to package.json
 
-    ```json
+    ```javascript
     "scripts": {
-      //other scripts
+      // other scripts
       "predeploy" : "npm run build",
       "deploy" : "gh-pages -d dist",
     }
