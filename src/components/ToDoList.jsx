@@ -1,13 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./ToDoList.css";
 
 function ToDoList() {
   const [inputValue, setInputValue] = useState("");
   const [todos, setTodos] = useState([]);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const storedTodos = localStorage.getItem("todos");
+    if (storedTodos) {
+      setTodos(JSON.parse(storedTodos));
+    }
+    setLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (!loaded) return;
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const handleAddTask = () => {
     if (!inputValue) {
       alert("Please enter a valid task!");
+      return;
     }
 
     const newTodo = {
