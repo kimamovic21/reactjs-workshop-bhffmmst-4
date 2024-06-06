@@ -1,39 +1,5 @@
 .task-row {
   display: flex;
-  padding: 0.3rem 0.5rem;
-  margin: 0.2rem;
-  border-bottom: 1px solid #ccc;
-}
-
-.row-add-task {
-  display: flex;
-  background-color: #eee;
-  border-radius: 30px;
-  padding-left: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.row-add-task input[type="text"] {
-  flex: 1;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  padding: 1rem 0;
-  font-size: 1.3rem;
-}
-
-.row-add-task button {
-  padding: 0.7rem 1.5rem;
-  background-color: #0090ff;
-  color: #fff;
-  border: none;
-  font-size: 1.2rem;
-  border-radius: 40px;
-  cursor: pointer;
-}
-
-.task-row {
-  display: flex;
   align-items: center;
   padding: 0.3rem 0.5rem;
   margin: 0.2rem;
@@ -59,10 +25,6 @@
 
 .delete-btn:hover {
   background-color: #cc0000;
-}
-
-.row-add-task button:hover {
-  background-color: #0000ff;
 }
 
 .completed .task-text {

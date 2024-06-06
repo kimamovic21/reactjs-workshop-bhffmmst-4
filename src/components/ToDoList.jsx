@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import "./ToDoList.css";
+import AddToDo from "./AddToDo";
+import ToDo from "./ToDo";
 
 function ToDoList() {
-  const [inputValue, setInputValue] = useState("");
   const [todos, setTodos] = useState([]);
   const [loaded, setLoaded] = useState(false);
 
@@ -18,27 +18,6 @@ function ToDoList() {
     if (!loaded) return;
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
-
-  const handleAddTask = () => {
-    if (!inputValue) {
-      alert("Please enter a valid task!");
-      return;
-    }
-
-    const newTodo = {
-      id: crypto.randomUUID(),
-      task: inputValue,
-      completed: false,
-    };
-
-    console.log(newTodo);
-    setTodos([...todos, newTodo]);
-    setInputValue("");
-  };
-
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-  };
 
   const handleDeleteTodo = (deleteId) => {
     const newTodos = todos.filter((todo) => todo.id !== deleteId);
@@ -57,44 +36,18 @@ function ToDoList() {
   };
 
   return (
-    <div className="container">
+    <div>
       <h2>To Do List</h2>
-      <div className="row-add-task">
-        <input
-          type="text"
-          value={inputValue}
-          onChange={handleInputChange}
-          placeholder="Enter a new task"
-        />
-        <button onClick={handleAddTask}>Add Task</button>
-      </div>
-      <div className="task-list">
-        {todos.map((todo) => {
-          return (
-            <div
-              className={`task-row ${todo.completed ? "completed" : ""}`}
-              key={todo.id}
-            >
-              <input
-                type="checkbox"
-                checked={todo.completed}
-                onChange={() => toggleTodoCompletion(todo.id)}
-              />
-              <div
-                className="task-text"
-                onClick={() => toggleTodoCompletion(todo.id)}
-              >
-                {todo.task}
-              </div>
-              <button
-                className="delete-btn"
-                onClick={() => handleDeleteTodo(todo.id)}
-              >
-                x
-              </button>
-            </div>
-          );
-        })}
+      <AddToDo todos={todos} setTodos={setTodos} />
+      <div>
+        {todos.map((todo) => (
+          <ToDo
+            key={todo.id}
+            todo={todo}
+            toggleTodoCompletion={toggleTodoCompletion}
+            handleDeleteTodo={handleDeleteTodo}
+          />
+        ))}
       </div>
     </div>
   );
